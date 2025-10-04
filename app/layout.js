@@ -2,6 +2,7 @@ import { Outfit, Ovo } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { ThemeProvider } from "@/Providers/theme-provider";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -15,18 +16,20 @@ const ovo = Ovo({
 
 export const metadata = {
   title: "Portfolio - Mongkol",
-  description: "",
+  description: "Personal Portfolio Website",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${outfit.className} ${ovo.className} antialiased flex flex-col min-h-screen`}
       >
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
