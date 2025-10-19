@@ -10,8 +10,8 @@ const Services = () => {
       <h2 className="text-center text-5xl font-sans">My Services</h2>
 
       <p className="text-center max-w-2xl mx-auto mt-5 mb-12 font-sans">
-        I am a frontend developer from thailand, USA with 10 year of experience
-        in multiple companies like Microsoft, Tesla and Apple
+        I am an entry‑level Frontend Developer passionate about creating clean
+        and user‑friendly interfaces, and continuously improving my skills.
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 my-10">

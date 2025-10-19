@@ -9,8 +9,8 @@ const Work = () => {
       <h2 className="text-center text-5xl font-sans">My Lastest work</h2>
 
       <p className="text-center max-w-2xl mx-auto mt-5 mb-12 font-sans">
-        Welcome to my web development portfolio! Explore a collection of project
-        showcasing my expertise in front-end development.
+        Welcome to my web development portfolio! Here you can explore projects
+        I’ve built while learning and growing as a frontend developer.
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 my-10">

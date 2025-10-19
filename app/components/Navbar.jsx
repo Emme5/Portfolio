@@ -32,7 +32,7 @@ const Navbar = () => {
     <>
       {/* Background */}
       <div className="fixed top-0 right-0 w-11/12 -z-10 translate-y-[-80%] dark:hidden">
-        <Image src={assets.header_bg_color} alt="Bg-color" className="w-full" />
+        <Image src={assets.header_bg_color} alt="Bg-color" className="w-2" />
       </div>
 
       {/* Navbar */}
