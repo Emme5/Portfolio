@@ -1,4 +1,5 @@
-import { Outfit, Geist, Geist_Mono } from "next/font/google";
+import { Outfit, Geist, Geist_Mono, Noto_Sans_Thai } from "next/font/google";
+import { ThemeProvider } from "./components/Providers/theme-provider";
 import "./globals.css";
 
 // ✅ Google Font
@@ -17,6 +18,11 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
 });
 
+const notoThai = Noto_Sans_Thai({
+  subsets: ['thai'],
+  weight: ['400', '700'],
+})
+
 export const metadata = {
   title: "Portfolio",
   description: "",
@@ -24,11 +30,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
-        className={`${outfit.className} ${geistSans.variable} ${geistMono.variable} antialiased leading-8 overflow-x-hidden`}
+        className={`${outfit.className} ${geistSans.variable} ${geistMono.variable} ${notoThai.variable} antialiased leading-8 overflow-x-hidden`}
       >
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
