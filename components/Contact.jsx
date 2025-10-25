@@ -1,7 +1,7 @@
-import { assets } from "@/assets/assets";
 import { SendHorizontal } from "lucide-react";
-import Image from "next/image";
 import React, { useState } from "react";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
 
 const Contact = () => {
   const [result, setResult] = useState("");
@@ -50,41 +50,41 @@ const Contact = () => {
 
       <form onSubmit={onSubmit} className="max-w-2xl mx-auto">
         <div className="grid grid-cols-auto gap-6 mt-10 mb-8">
-          <input
+          <Input
             type="text"
             placeholder="Enter your name"
             required
             name="name"
-            className="flex-1 p-3 outline-none 
+            className="flex-1 p-6 outline-none 
                    border-[0.5px] border-gray-400 dark:border-gray-600 
                    rounded-md 
                    bg-white dark:bg-gray-900 
                    text-gray-800 dark:text-gray-200"
           />
-          <input
+          <Input
             type="email"
             placeholder="Enter your email"
             required
             name="email"
-            className="flex-1 p-3 outline-none 
+            className="flex-1 p-6 outline-none 
                    border-[0.5px] border-gray-400 dark:border-gray-600 
                    rounded-md 
                    bg-white dark:bg-gray-900 
                    text-gray-800 dark:text-gray-200"
           />
         </div>
-        <textarea
+        <Textarea
           rows="6"
           placeholder="Enter your message"
           required
           name="message"
-          className="w-full p-4 outline-none 
+          className="w-full p-6 outline-none 
                  border-[0.5px] border-gray-400 dark:border-gray-600 
                  rounded-md 
                  bg-white dark:bg-gray-900 
-                 text-gray-800 dark:text-gray-200 
+                 text-gray-800 dark:text-white
                  mb-6"
-        ></textarea>
+        />
 
         <button
           type="submit"

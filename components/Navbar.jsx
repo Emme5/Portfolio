@@ -1,17 +1,20 @@
-"use client";
-
 import { assets } from "@/assets/assets";
 import { MoveUpRight, PanelLeftClose, X } from "lucide-react";
 import { Button } from "./ui/button";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
 
   const [isScroll, setIsScroll] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -32,7 +35,7 @@ const Navbar = () => {
     <>
       {/* Background */}
       <div className="fixed top-0 right-0 w-11/12 -z-10 translate-y-[-80%] dark:hidden">
-        <Image src={assets.header_bg_color} alt="Bg-color" className="w-2" />
+        <Image src={assets.header_bg_color} alt="Bg-color" />
       </div>
 
       {/* Navbar */}
@@ -92,12 +95,13 @@ const Navbar = () => {
           <Button
             variant="outline"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="transition-all duration-300 hover:scale-105 hover:bg-gray-100 dark:hover:bg-gray-800"
+            className="hidden md:block transition-all duration-300 hover:scale-105 hover:bg-gray-100 dark:hover:bg-gray-800"
           >
             <span className="inline-block transition-transform duration-300 ease-in-out hover:scale-125">
               {!mounted ? "🌙" : theme === "dark" ? "☀️" : "🌙"}
             </span>
           </Button>
+
           <a
             href="#contact"
             className="hidden lg:flex items-center gap-3 px-10 py-2.5 border border-gray-500 rounded-full ml-4 font-extrabold transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:border-white/50"
@@ -107,74 +111,63 @@ const Navbar = () => {
           </a>
 
           {/* Mobile Menu Button */}
-          <Button
-            variant="outline"
-            className="block md:hidden ml-3 p-2 h-10 w-10"
-            onClick={() => setIsOpen(true)}
-          >
-            <PanelLeftClose />
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="outline"
+                className="block md:hidden ml-3 p-2 h-10 w-10"
+              >
+                <PanelLeftClose />
+              </Button>
+            </DropdownMenuTrigger>
+
+            <DropdownMenuContent
+              align ="end"
+              side="bottom"
+              className="w-64 bg-rose-50 dark:bg-gray-900"
+            >
+              <DropdownMenuItem asChild>
+                <a href="#top" className="w-full font-sans py-4">
+                  Home
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <a href="#about" className="w-full font-sans py-4">
+                  About me
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <a href="#services" className="w-full font-sans py-4 ">
+                  Services
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <a href="#work" className="w-full font-sans py-4">
+                  My Work
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <a href="#contact" className="w-full font-sans py-4">
+                  Contact me
+                </a>
+              </DropdownMenuItem>
+
+              <DropdownMenuItem asChild>
+                <Button
+                  variant="outline"
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  className="w-full flex items-center justify-center gap-2 py-2 mt-2 border border-gray-500 dark:border-white/50"
+                >
+                  {!mounted
+                    ? "🌙"
+                    : theme === "dark"
+                    ? "☀️ Light Mode"
+                    : "🌙 Dark Mode"}
+                </Button>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
-
-        {/* ----- Mobile Menu ------- */}
-        <ul
-          className={`flex md:hidden flex-col gap-4 py-20 px-10 fixed top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 dark:bg-gray-900 transition-transform duration-500
-          ${isOpen ? "translate-x-0 right-0" : "translate-x-full right-0"}`}
-        >
-          {/* Close Button */}
-          <div
-            className="absolute right-6 top-6"
-            onClick={() => setIsOpen(false)}
-          >
-            <X size={38} />
-          </div>
-
-          <li>
-            <a
-              className="font-sans text-gray-900 dark:text-gray-200"
-              onClick={() => setIsOpen(false)}
-              href="#top"
-            >
-              Home
-            </a>
-          </li>
-          <li>
-            <a
-              className="font-sans "
-              onClick={() => setIsOpen(false)}
-              href="#about"
-            >
-              About me
-            </a>
-          </li>
-          <li>
-            <a
-              className="font-sans"
-              onClick={() => setIsOpen(false)}
-              href="#services"
-            >
-              Services
-            </a>
-          </li>
-          <li>
-            <a
-              className="font-sans"
-              onClick={() => setIsOpen(false)}
-              href="#work"
-            >
-              My Work
-            </a>
-          </li>
-          <li>
-            <a
-              className="font-sans"
-              onClick={() => setIsOpen(false)}
-              href="#contact"
-            >
-              Contact me
-            </a>
-          </li>
-        </ul>
       </nav>
     </>
   );
